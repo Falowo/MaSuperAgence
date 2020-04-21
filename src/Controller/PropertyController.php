@@ -57,12 +57,12 @@ class PropertyController extends AbstractController
      * @param Property $property
      * @param string $slug
      * @return Response
-     * @Route("/biens/{slug}/{id}", name="property_show")
+     * @Route("/biens/{slug}/{id}", name="property.show")
      */
     public function show(Property $property, string $slug): Response
     {
         if($property->getSlug() !== $slug){
-          return  $this->redirectToRoute('property_show', [
+          return  $this->redirectToRoute('property.show', [
                'id'=>$property->getId(),
                'slug'=>$property->getSlug()
             ], 301);
