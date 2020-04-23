@@ -1,2 +1,9 @@
 twig:
+    form_themes: ['bootstrap_4_layout.html.twig']
+
+#    paths:
+#        'email/default/templates': ~
+#        'backend/templates': 'admin'
+
     default_path: '%kernel.project_dir%/templates'
+

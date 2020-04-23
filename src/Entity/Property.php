@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
+ * @UniqueEntity("title")
  */
 class Property
 {
@@ -35,6 +38,7 @@ class Property
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(min="10", max="400")
      */
     private $surface;
 
@@ -65,6 +69,7 @@ class Property
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\Length(min="2", max="50", minMessage="trop court", maxMessage="trop long")
      */
     private $city;
 
@@ -80,11 +85,13 @@ class Property
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Assert\Regex("/^[0-9]{5}$/")
      */
     private $postal_code;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      */
     private $adress;
 
