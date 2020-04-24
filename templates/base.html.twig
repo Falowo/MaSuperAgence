@@ -25,6 +25,37 @@
 
             </ul>
 
+            <ul class="navbar-nav">
+                {% if app.user is null %}
+
+
+
+                    <li class="nav-item">
+                        <a href="{{ path('app_register') }}" class="nav-link">
+                            Inscription
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('app_login') }}" class="nav-link">
+                            Connexion
+                        </a>
+                    </li>
+
+                {% else %}
+                    <li class="nav-item">
+                    <span class="nav-link">
+                        {{ app.user.email }}
+                    </span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('app_logout') }}" class="nav-link">
+                            Déconnexion
+                        </a>
+                    </li>
+                {% endif %}
+
+            </ul>
+
         </div>
     </nav>
 
