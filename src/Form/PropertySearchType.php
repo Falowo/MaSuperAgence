@@ -2,12 +2,15 @@
 
 namespace App\Form;
 
+use App\Entity\Option;
 use App\Entity\PropertySearch;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use function Sodium\add;
 
 class PropertySearchType extends AbstractType
 {
@@ -16,23 +19,32 @@ class PropertySearchType extends AbstractType
         $builder
             ->add('maxPrice', IntegerType::class, [
                 'required' => false,
-                'label'=>false,
+                'label' => false,
                 'attr' => [
                     'placeholder' => 'Budget max'
                 ]
             ])
             ->add('minSurface', IntegerType::class, [
                 'required' => false,
-                'label'=>false,
+                'label' => false,
                 'attr' => [
                     'placeholder' => 'Surface minimale'
 
                 ]
             ])
+            ->add('options', EntityType::class, [
+                'required' => false,
+                'label' => false,
+                'class'=>Option::class,
+                'choice_label'=>'name',
+                'multiple'=>true
+
+            ])
+        ;
 //            ->add('submit', SubmitType::class, [
 //                'label'=>'Rechercher'
 //            ])
-        ;
+//      ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -40,7 +52,7 @@ class PropertySearchType extends AbstractType
         $resolver->setDefaults([
             'data_class' => PropertySearch::class,
             'method' => 'get',
-            'csrf_protection'=>false
+            'csrf_protection' => false
         ]);
     }
 

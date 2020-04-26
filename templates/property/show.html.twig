@@ -56,6 +56,14 @@
                         <td>Chauffage</td>
                         <td>{{ property.heatType }}</td>
                     </tr>
+                    <tr>
+                        <td>Spécificités</td>
+                        {% for option in property.options %}
+                            <td>{{ option.name }}</td>
+                        {% endfor %}
+
+                    </tr>
+
 
                 </table>
 
